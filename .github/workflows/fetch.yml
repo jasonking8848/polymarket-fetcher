@@ -15,15 +15,10 @@ jobs:
           python-version: '3.11'
       - name: Install deps
         run: pip install requests
-      - name: Fetch Polymarket World Cup data
+      - name: Fetch Polymarket data
         run: python fetch_polymarket.py
-      - name: Commit data
-        run: |
-          git config user.name bot
-          git config user.email bot@local
-          git add data/
-          git commit -m "Update data" || echo "no changes"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/jasonking8848/polymarket-fetcher.git main          
-
-
-
+      - name: Upload data
+        uses: actions/upload-artifact@v4
+        with:
+          name: polymarket-data
+          path: data/
