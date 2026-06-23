@@ -22,5 +22,8 @@ jobs:
           git config user.name bot
           git config user.email bot@local
           git add data/
-          git commit -m "Update data" || echo "No changes to commit"
-          git push
+          git commit -m "Update data" || echo "no changes"
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/jasonking8848/polymarket-fetcher.git main          
+
+
+
